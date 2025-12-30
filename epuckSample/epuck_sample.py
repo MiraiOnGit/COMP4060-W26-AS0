@@ -1,8 +1,6 @@
 import time
 import random
-from epuck_com import EPuckCom
-from epuck_ip import EPuckIP
-import epuck  #for user constants
+import epuck
 
 import numpy as np
 from PIL import Image
@@ -27,8 +25,8 @@ def cam_bytes_to_image(mode, data, width, height):
 
 def epuck_test():
 
-    epuckcomm = EPuckCom("COM25", debug=False)
-    #epuckcomm = EPuckIP("192.168.229.106", debug=True)
+    epuckcomm = epuck.EPuckCom("COM25", debug=False)
+    #epuckcomm = epuck.EPuckIP("192.168.229.106", debug=True)
     if (not epuckcomm.connect()):
         print("Could not connect, quitting")
         return
