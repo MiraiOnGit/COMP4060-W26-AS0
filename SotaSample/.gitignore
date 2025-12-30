@@ -1,3 +1,4 @@
 jars/
 .idea/workspace.xml
 bin/
+*.class
