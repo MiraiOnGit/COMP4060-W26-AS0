@@ -126,18 +126,18 @@ public class MatrixHelp {  // creates homogeneous rotation matrices
         System.out.println();  
     }
 
-    static public void printFrame(RealMatrix R) { printFrame(null, R);}
-    static public void printFrame(String title, RealMatrix R) { printFrame(title, R, 5, 3);}
-    static public void printFrame(String title, RealMatrix R, int spacing, int precision) {
+    static public void printFrame(RealMatrix F) { printFrame(null, F);}
+    static public void printFrame(String title, RealMatrix F) { printFrame(title, F, 5, 3);}
+    static public void printFrame(String title, RealMatrix F, int spacing, int precision) {
         if (title != null)
             System.out.print("----- "+title+"  ");
-        RealVector t = getTrans(R);
+        RealVector t = getTrans(F);
 
         System.out.print("t: ");
         for (int i = 0; i < t.getDimension(); i++)
             System.out.printf("%"+spacing+"."+precision+"f ", t.getEntry(i)); // 6 characters wide, 2 decimal places
 
-        double[] ypr = getYPR(R);
+        double[] ypr = getYPR(F);
         System.out.print("  ypr: ");
         for (int i = 0; i < ypr.length; i++)
             System.out.printf("%"+spacing+"."+precision+"f ", ypr[i]); // 6 characters wide, 2 decimal places
