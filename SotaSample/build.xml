@@ -7,7 +7,7 @@
 
         <!--ip -->
         <!--- CONFIGURE THIS for your Sota -->
-        <property name="scp.server" value="192.168.0.23"/>  
+        <property name="scp.server" value="192.168.137.45"/>
         <!-- <property name="scp.server" value="10.127.19.46"/>    -->
          
         <!--scp credentials -->
@@ -118,6 +118,11 @@
                         <param name="jar.name" value="sample4060-marrytts.jar" />
                 </antcall>
 
+                <antcall target="__make_jar">
+                        <param name="jar.class" value="sample4060.CameraSnapTest" />
+                        <param name="jar.name" value="sample4060-camerasnaptest.jar" />
+                </antcall>
+edison00
                 <!-- put other programs here -->
                 <!-- <antcall target="__make_jar">  
                         <param name="jar.class" value="student.Sample" />
