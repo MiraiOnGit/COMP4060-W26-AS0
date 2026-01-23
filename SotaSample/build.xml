@@ -118,6 +118,11 @@
                         <param name="jar.name" value="sample4060-marrytts.jar" />
                 </antcall>
 
+                <antcall target="__make_jar">
+                        <param name="jar.class" value="sample4060.pipersample" />
+                        <param name="jar.name" value="sample4060-pipertts.jar" />
+                </antcall>
+
                 <!-- put other programs here -->
                 <!-- <antcall target="__make_jar">  
                         <param name="jar.class" value="student.Sample" />
