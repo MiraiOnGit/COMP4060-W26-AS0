@@ -10,20 +10,22 @@ import matplotlib.pyplot as plt
 R_MAX_SPEED = 1200 #step/s
 
 def diff_drive_forward_kin( pose, left_steps, right_steps):
-        pose = np.asarray(pose, dtype=float)
-        r_x, r_y, r_theta = pose[:, 0], pose[:, 1], pose[:, 2]
+        # pose = np.asarray(pose, dtype=float)
+        r_x, r_y, r_theta = pose
+        # TO DO: check radian
 
 
-        dR = np.asarray(As1lib.steps_to_mm(right_steps), dtype=float)
-        dL = np.asarray(As1lib.steps_to_mm(left_steps), dtype=float)
+        dR = As1lib.steps_to_mm(right_steps)
+        dL = As1lib.steps_to_mm(left_steps)
        
         turn_angle = (dR - dL)/As1lib.WHEEL_BASE_MM
         turn_radius = (As1lib.WHEEL_BASE_MM*(dR+dL))/(2*(dR - dL))
+
         # ICC coordinates
-        icc = np.stack([
+        icc = np.array([
             r_x - turn_radius * np.sin(turn_angle),
             r_y + turn_radius * np.cos(turn_angle)
-        ], axis=1) 
+        ]) 
         p = np.array([r_x, r_y])
 
         # translate
@@ -38,7 +40,7 @@ def diff_drive_forward_kin( pose, left_steps, right_steps):
         new_pose = icc + rotation_result
         new_theta = r_theta + turn_angle
 
-        return np.array([new_pose[0], new_pose[1], new_theta])
+        return (new_pose[0], new_pose[1], new_theta)
 
 
 
