@@ -1,3 +1,6 @@
 [submodule "epuckSample/epuck"]
 	path = epuckSample/epuck
 	url = https://github.com/youngmb/epuck
+[submodule "AS1/epuck"]
+	path = AS1/epuck
+	url = https://github.com/youngmb/epuck
