@@ -104,9 +104,11 @@ public class pipersample {
             conn.setDoOutput(true);
 
             // JSON
-            String voiceLine = piperRequest.voice == null ? "": "\"voice\": \""+piperRequest.voice+"\"";
+            String voiceLine = piperRequest.voice == null ?
+                    "" :
+                    "\"voice\": \""+piperRequest.voice+"\", ";
             String jsonInputString = "{\"text\": \"" + piperRequest.textToGen + "\"," +   // see https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/API_HTTP.md
-                    voiceLine+", "+
+                    voiceLine+
                     "\"sample_rate\": 22050," +  // ensure match to Sota's working rate
                     "\"length_scale\": "+ piperRequest.lengthScale +"," +
                     "\"noise_scale\": "+ piperRequest.noiseScale +"," +
