@@ -34,8 +34,6 @@ def move_steps(epuckcomm, l_speed_steps_s, r_speed_steps_s, l_target_steps, r_ta
     epuckcomm.data_update()
     time.sleep(0.5)  #give time for the robot to get the request
 
-    total_left = 0
-    total_right = 0
     left_reached = False
     right_reached = False
     while not (left_reached and right_reached):
@@ -43,8 +41,9 @@ def move_steps(epuckcomm, l_speed_steps_s, r_speed_steps_s, l_target_steps, r_ta
         current_left = epuckcomm.state.sens_left_motor_steps
         current_right = epuckcomm.state.sens_right_motor_steps
         total_left += As1lib.steps_delta(prev_left, current_left)
+        print(total_left)
         total_right += As1lib.steps_delta(prev_right, current_right)
-       
+        print(total_right)
         prev_left = current_left
         prev_right = current_right
         if l_target_steps >= 0:
@@ -60,6 +59,10 @@ def move_steps(epuckcomm, l_speed_steps_s, r_speed_steps_s, l_target_steps, r_ta
             if total_right <= r_target_steps:
                 right_reached = True
         time.sleep(1.0 / Hz)
+    # epuckcomm.state.act_left_motor_speed = 0
+    # epuckcomm.state.act_right_motor_speed = 0
+    # epuckcomm.data_update()
+    # epuckcomm.stop_all()
     return (total_left, total_right)
    
 def move_straight (epuckcomm, distance_mm, speed_mm_s, Hz=10):
@@ -90,7 +93,7 @@ def epuck_test():
 
     epuckcomm.enable_sensors = True
     epuckcomm.send_command() # enable sensor stream.
-    time.sleep(0.5)  #give time for the robot to get the request
+    time.sleep(2)  #give time for the robot to get the request
     
     
     # move the robot forward about 13cm
@@ -109,13 +112,44 @@ def epuck_test():
     # move_straight (epuckcomm, 1000, 1000)
     # move_straight (epuckcomm, -1000, -1000)
 
-    move_steps(epuckcomm, ik.diff_drive_inverse_kin(300, -40, -np.pi*2), Hz=30)
-
+    # (-432.91910856513636, -166.2524418984697, 3246.8933142385226, 1246.8933142385226)
+    # move_steps(epuckcomm, *ik.diff_drive_inverse_kin(200, 100, 0), Hz=10)
+    # epuckcomm.send_command() # enable sensor stream.
+    # time.sleep(0.1)  #give time for the robot to get the request
+   
+    move_steps(epuckcomm, *ik.diff_drive_inverse_kin(0, 100, np.pi/2), Hz=100)
     epuckcomm.send_command() # enable sensor stream.
+    time.sleep(0.1)  #give time for the robot to get the request
+
+    # move_steps(epuckcomm, *ik.diff_drive_inverse_kin(200, 100, 0), Hz=10)
+    # epuckcomm.send_command() # enable sensor stream.
+    # time.sleep(0.1)  #give time for the robot to get the request
+
+    # move_steps(epuckcomm, *ik.diff_drive_inverse_kin(0, 100, -np.pi/2), Hz=10)
+    # epuckcomm.send_command() # enable sensor stream.
     # time.sleep(0.5)  #give time for the robot to get the request
 
+    # move_steps(epuckcomm, *ik.diff_drive_inverse_kin(200, 100, 0), Hz=10)
+    # epuckcomm.send_command() # enable sensor stream.
+    # time.sleep(0.5)  #give time for the robot to get the request
+
+    # move_steps(epuckcomm, *ik.diff_drive_inverse_kin(0, 100, -np.pi/2), Hz=10)
+    # epuckcomm.send_command() # enable sensor stream.
+    # time.sleep(0.5)  #give time for the robot to get the request
+
+    # move_steps(epuckcomm, *ik.diff_drive_inverse_kin(200, 100, 0), Hz=10)
+    # epuckcomm.send_command() # enable sensor stream.
+    # time.sleep(0.1)  #give time for the robot to get the request
+
+    # move_steps(epuckcomm, *ik.diff_drive_inverse_kin(0, 100, -np.pi/2), Hz=10)
+    # epuckcomm.send_command() # enable sensor stream.
+    # time.sleep(0.5)  #give time for the robot to get the request
+
+    
+
+    
+
    
-    time.sleep(2)
 
     epuckcomm.stop_all()
     epuckcomm.close()

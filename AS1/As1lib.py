@@ -4,11 +4,12 @@ import math
 # constant
 
 STEPS_PER_CYCLE = 50*20  # Motor steps for one full wheel rotation. 50:1 gear reduction * 20 steps/revolution at motor shaft
-WHEEL_DIAMETER_MM = 42.0     # Diameter of the e-puck wheel in mm
+WHEEL_DIAMETER_MM = 42.5     # Diameter of the e-puck wheel in mm
 WHEEL_RADIUS_MM = WHEEL_DIAMETER_MM / 2.0  # Radius in mm
 WHEEL_BASE_MM = 52.0         # Distance between left and right wheels in mm
 MAX_STEP_COUNT = 2**16       #  16-bit step counter - 2^16 = 65536
 
+# WHEEL_BASE_MM = 53   # Jim value
 
 def steps_delta(last, current):
     # int
@@ -87,7 +88,8 @@ def print_pose (pose):
     # 3 lines
     
     x_mm, y_mm, theta_rad = pose
-    print(f"Pose: x={x_mm:.2f} mm, y={y_mm:.2f} mm, theta={math.degrees(theta_rad):.2f}°")
+    theta_deg = math.degrees(theta_rad) % 360
+    print(f"Pose: x: {x_mm} mm, y: {y_mm} mm, deg: {theta_deg:}°")
     
 
 
