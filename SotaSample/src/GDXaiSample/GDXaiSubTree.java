@@ -4,44 +4,23 @@ import com.badlogic.gdx.ai.btree.*;
 import com.badlogic.gdx.ai.btree.Task.Status;
 import com.badlogic.gdx.ai.btree.branch.*;
 
-
-class SubTreeTask<T> extends LeafTask<T> {
-	private BehaviorTree<T> subtree;
-
-	public SubTreeTask(BehaviorTree<T> subtree) {
-		this.subtree = subtree;
-	}
-
-	@Override
-	public Status execute() {
-		subtree.step();
-		return subtree.getStatus();
-	}
-
-	@Override
-    protected Task<T> copyTo(Task<T> task) {
-        return new SubTreeTask<>(subtree);
-    }
-}
-
-
-
 public class GDXaiSubTree {
 
 	void run() {
 
 		// shared data structure to communicate within the tree. You may want to make your own robot state object
 		Blackboard blackboard = new Blackboard();
-
-		BehaviorTree<Blackboard> testTree = GDXaiSample.makeTree(blackboard);
-
+;
 		// Create a behavior tree manually
 		// the BehaviorTree generic type is the blackboard type it expects
-		@SuppressWarnings("unchecked")  // just to suppress the annoying message
+		@SuppressWarnings("unchecked")  // just to suppress the annoying generics message
 		BehaviorTree<Blackboard> tree = new BehaviorTree<>(
 			new Sequence<>(
 				new LogAction("New Tree, before calling subtree..."),
-				new SubTreeTask<Blackboard>(testTree)
+
+					// to embed a tree in another tree, just get the first child to bypass
+					//  the root note, and it works as expected
+					GDXaiSample.makeTree(blackboard).getChild(0)
 			)
 		);
 		tree.setObject(blackboard);
