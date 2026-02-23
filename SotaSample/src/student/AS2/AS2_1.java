@@ -6,7 +6,7 @@ import java.awt.*;
 
 
 public class AS2_1 {
-    static final String TAG = "sample";   // set this to support the Sota logging system
+    static final String TAG = "AS2_1";   // set this to support the Sota logging system
     static final String RESOURCES = "../resources/";
     static final String SOUNDS = RESOURCES+"sound/";
     static final int HZ = 10;
