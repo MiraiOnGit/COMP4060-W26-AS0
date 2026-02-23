@@ -4,7 +4,7 @@ import math
 # constant
 
 STEPS_PER_CYCLE = 50*20  # Motor steps for one full wheel rotation. 50:1 gear reduction * 20 steps/revolution at motor shaft
-WHEEL_DIAMETER_MM = 42.5     # Diameter of the e-puck wheel in mm
+WHEEL_DIAMETER_MM = 41     # Diameter of the e-puck wheel in mm
 WHEEL_RADIUS_MM = WHEEL_DIAMETER_MM / 2.0  # Radius in mm
 WHEEL_BASE_MM = 52.0         # Distance between left and right wheels in mm
 MAX_STEP_COUNT = 2**16       #  16-bit step counter - 2^16 = 65536
@@ -133,6 +133,8 @@ if __name__ == "__main__":
     # distance = steps_to_mm(1000)
     # print(f"steps_to_mm(1000) = {distance:.4f} mm")
 
-    # steps = mm_to_steps(circumference)
-    # print(f"mm_to_steps({circumference:.4f}) = {steps:.2f} steps")
+    steps = mm_to_steps(1000)
+    # halfsteps = mm_to_steps(500)
+    print(f"mm_to_steps({1000:.4f}) = {steps:.2f} steps")
+    # print(f"mm_to_steps({500:.4f}) = {halfsteps:.2f} steps")
 

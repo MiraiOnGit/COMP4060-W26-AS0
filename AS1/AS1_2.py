@@ -12,7 +12,6 @@ R_MAX_SPEED = 1000 #step/s
 def diff_drive_forward_kin( pose, left_steps, right_steps):
         # pose = np.asarray(pose, dtype=float)
         r_x, r_y, r_theta = pose
-        # TO DO: check radian: inoput is in radian
 
         dR = As1lib.steps_to_mm(right_steps)
         dL = As1lib.steps_to_mm(left_steps)
@@ -50,20 +49,20 @@ def diff_drive_forward_kin( pose, left_steps, right_steps):
 
 
 
-def epuck_test():
+# def epuck_test():
     
     
-    As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 0, 0)) # should give: (0, 0, 0)
-    As1lib.print_pose(diff_drive_forward_kin( (10, 20, 0), 1250, 1250)) # should give: (177,20, 0)
-    As1lib.print_pose(diff_drive_forward_kin( (10, 20, np.pi/2), 1250, 1250)) # should give: (10, 187, 90)
-    As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), -1250, 1250)) #should give (0, 0, 0)
-    As1lib.print_pose(diff_drive_forward_kin( (0, 0, np.pi/2), 1250, -1250)) #should give (0,0, 90)
-    As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 2500, 0)) #should give (0, 0, 0)
-    As1lib.print_pose(diff_drive_forward_kin( (1000, 1000, np.pi/2), 1250, -1250)) #should give (1000, 1000, 90)
-    As1lib.print_pose(diff_drive_forward_kin( (0, 0, np.pi/2), 1250, 100)) #should give (61,7, 284)
-    As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 1991, 2075)) #should give (269, 29, 12)
-    As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 189, 2422)) #should give (-18, 6, 322)
-    As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 1249, 2598)) #should give (-19, 149, 194)
+#     As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 0, 0)) # should give: (0, 0, 0)
+#     As1lib.print_pose(diff_drive_forward_kin( (10, 20, 0), 1250, 1250)) # should give: (177,20, 0)
+#     As1lib.print_pose(diff_drive_forward_kin( (10, 20, np.pi/2), 1250, 1250)) # should give: (10, 187, 90)
+#     As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), -1250, 1250)) #should give (0, 0, 0)
+#     As1lib.print_pose(diff_drive_forward_kin( (0, 0, np.pi/2), 1250, -1250)) #should give (0,0, 90)
+#     As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 2500, 0)) #should give (0, 0, 0)
+#     As1lib.print_pose(diff_drive_forward_kin( (1000, 1000, np.pi/2), 1250, -1250)) #should give (1000, 1000, 90)
+#     As1lib.print_pose(diff_drive_forward_kin( (0, 0, np.pi/2), 1250, 100)) #should give (61,7, 284)
+#     As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 1991, 2075)) #should give (269, 29, 12)
+#     As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 189, 2422)) #should give (-18, 6, 322)
+#     As1lib.print_pose(diff_drive_forward_kin( (0, 0, 0), 1249, 2598)) #should give (-19, 149, 194)
     
     
-epuck_test()
+# epuck_test()

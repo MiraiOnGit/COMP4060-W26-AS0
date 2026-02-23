@@ -7,14 +7,10 @@
 
         <!--ip -->
         <!--- CONFIGURE THIS for your Sota -->
-<<<<<<< HEAD
+
         <property name="scp.server" value="192.168.137.45"/>
-<!--        <property name="scp.server" value="10.151.34.135"/>-->
-=======
-<!--        <property name="scp.server" value="192.168.0.23"/>-->
-         <property name="scp.server" value="10.151.63.71"/>
->>>>>>> upstream
-         
+<!--         <property name="scp.server" value="10.151.63.71"/>-->
+
         <!--scp credentials -->
         <property name="scp.edison.user" value="root"  />
         <property name="scp.edison.pass" value="edison00" />
@@ -92,6 +88,11 @@
                 </antcall>
 
                 <antcall target="__make_jar">
+                        <param name="jar.class" value="student.AS2.AS2_1" />
+                        <param name="jar.name" value="student-AS2_1.jar" />
+                </antcall>
+
+                <antcall target="__make_jar">
                         <param name="jar.class" value="sample4060.MotorStatesLive" />
                         <param name="jar.name" value="sample4060-motorstateslive.jar" />
                 </antcall>
@@ -124,13 +125,11 @@
                 </antcall>
 
                 <antcall target="__make_jar">
-<<<<<<< HEAD
                         <param name="jar.class" value="sample4060.CameraSnapTest" />
                         <param name="jar.name" value="sample4060-camerasnaptest.jar" />
-=======
                         <param name="jar.class" value="sample4060.pipersample" />
                         <param name="jar.name" value="sample4060-pipertts.jar" />
->>>>>>> upstream
+
                 </antcall>
 
                 <!-- put other programs here -->
