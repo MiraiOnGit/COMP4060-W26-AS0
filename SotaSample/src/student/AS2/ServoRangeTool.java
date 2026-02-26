@@ -2,6 +2,7 @@ package student.AS2;
 
 import jp.vstone.RobotLib.CRobotPose;
 import jp.vstone.RobotLib.CSotaMotion;
+import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealVector;
 
 import java.io.*;
@@ -15,6 +16,7 @@ public class ServoRangeTool implements Serializable {
     private Short[] _midpos = null;
     private Byte[] _servoIDs;
     private TreeMap<Byte, Byte> IDtoIndex = new TreeMap<>();
+    private final TreeMap<Byte, Double[]> _motorRanges_rad = new TreeMap<>();
 
     final static String FILENAME = "range.dat";
 
@@ -24,6 +26,16 @@ public class ServoRangeTool implements Serializable {
         for (byte i = 0; i < servoIDs.length; i++) {
             IDtoIndex.put(servoIDs[i], (byte) i);
         }
+        _motorRanges_rad.put(CSotaMotion.SV_BODY_Y,     new Double[]{ -1.077363736,  1.077363736 });
+        _motorRanges_rad.put(CSotaMotion.SV_L_SHOULDER, new Double[]{ -2.617993878,  1.745329252 });
+        _motorRanges_rad.put(CSotaMotion.SV_L_ELBOW,    new Double[]{ -1.745329252,  1.221730476 });
+//        _motorRanges_rad.put(CSotaMotion.SV_R_SHOULDER, new Double[]{ -1.745329252,  2.617993878 });
+//        _motorRanges_rad.put(CSotaMotion.SV_R_ELBOW,    new Double[]{ -1.221730476,  1.745329252 });
+        _motorRanges_rad.put(CSotaMotion.SV_R_SHOULDER, new Double[]{  2.617993878, -1.745329252 });
+        _motorRanges_rad.put(CSotaMotion.SV_R_ELBOW,    new Double[]{  1.745329252, -1.221730476 });
+        _motorRanges_rad.put(CSotaMotion.SV_HEAD_Y,     new Double[]{ -1.495996502,  1.495996502 });
+        _motorRanges_rad.put(CSotaMotion.SV_HEAD_P,     new Double[]{ -2.617993878,  2.617993878 });
+        _motorRanges_rad.put(CSotaMotion.SV_HEAD_R,     new Double[]{ -1.495996502,  1.495996502 });
 
         int n = servoIDs.length;
         _minpos = new Short[n];
@@ -33,12 +45,10 @@ public class ServoRangeTool implements Serializable {
 
     }
 
-        
     public void register(CRobotPose pose) {
         register(pose.getServoAngles(_servoIDs));
      }
      public void register(Short[] pos) {
-         //todo
          for (int i = 0; i < pos.length; i++) {
              if (pos[i] == null) continue;
 
@@ -71,33 +81,51 @@ public class ServoRangeTool implements Serializable {
 
     ///==================== Angle <-> motor pos conversions
     ///====================
-//    public RealVector calcAngles(CRobotPose pose) { // convert pose in motor positions to radians
-//        return null; // TODO
-//    }
+    public RealVector calcAngles(CRobotPose pose) { // convert pose in motor positions to radians
+        Short[] positions = pose.getServoAngles(_servoIDs);
+        double[] angles = new double[_servoIDs.length];
+        for (int i = 0; i < _servoIDs.length; i++) {
+            angles[i] = posToRad(_servoIDs[i], positions[i]);
+        }
+        return new ArrayRealVector(angles);
+    }
 
-//    public CRobotPose calcMotorValues(RealVector angles) { // convert pose in angles to motor positions
-//        return null; // TODO
-//    }
+    public CRobotPose calcMotorValues(RealVector angles) { // convert pose in angles to motor positions
+        Short[] positions = new Short[_servoIDs.length];
+        for (int i = 0; i < _servoIDs.length; i++) {
+            positions[i] = radToPos(_servoIDs[i], angles.getEntry(i));
+        }
+        return makePose(positions);
+    }
 
     private double posToRad(Byte servoID, Short pos) { // convert motor position to angle, in radians 
-        return 0; // TODO
+        int i = IDtoIndex.get(servoID);
+        double lower = _motorRanges_rad.get(servoID)[0];
+        double upper = _motorRanges_rad.get(servoID)[1];
+        double min   = _minpos[i];
+        double max   = _maxpos[i];
+        return lower + (pos - min) * (upper - lower) / (max - min);
+
+
     }
 
     private short radToPos(Byte servoID, double angle) { // convert angles, in radians, to motor position
-        return 0; // TODO
+        int i = IDtoIndex.get(servoID);
+        double lower = _motorRanges_rad.get(servoID)[0];
+        double upper = _motorRanges_rad.get(servoID)[1];
+        double min   = _minpos[i];
+        double max   = _maxpos[i];
+        return (short) Math.round(min + (angle - lower) * (max - min) / (upper - lower));
     }
     
 	///==================== Pretty Print
     /// ///====================
 	private String formattedLine(String title, Byte servoID, Short[] minpos, Short[] maxpos, Short[] middle, Short[] pos) {
-//		int i = 0;
         int i = IDtoIndex.get(servoID);
-//        double rad = 0;
-//        if (pos != null) rad = posToRad(servoID, pos[i]);
-//		String format = "%14s %8d %8d %8d    %.2f rad";
-//		return String.format(format, title, minpos[i], middle[i], maxpos[i], rad);
-        String format = "%14s %8d %8d %8d    ";
-        return String.format(format, title, minpos[i], middle[i], maxpos[i]);
+        double rad = 0;
+        if (pos != null) rad = posToRad(servoID, pos[i]);
+		String format = "%14s %8d %8d %8d    %.2f rad";
+		return String.format(format, title, minpos[i], middle[i], maxpos[i], rad);
 	}
 
     public void printMotorRanges() {printMotorRanges(null);}
