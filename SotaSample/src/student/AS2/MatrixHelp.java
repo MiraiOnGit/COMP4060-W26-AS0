@@ -1,35 +1,58 @@
-package student.AS2Distribute;
+package student.AS2;
 
 import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
 import org.apache.commons.math3.geometry.euclidean.threed.RotationConvention;
 import org.apache.commons.math3.geometry.euclidean.threed.RotationOrder;
-import org.apache.commons.math3.linear.MatrixUtils;
-import org.apache.commons.math3.linear.RealMatrix;
-import org.apache.commons.math3.linear.RealVector;
-import org.apache.commons.math3.linear.SingularValueDecomposition;
+import org.apache.commons.math3.linear.*;
 
 public class MatrixHelp {  // creates homogeneous rotation matrices
     
     public static RealMatrix rotX(double theta) { // returns a homogenous rotation matrix around the X axis
-        return null; // TODO
+        double c = Math.cos(theta);
+        double s = Math.sin(theta);
+        return new Array2DRowRealMatrix(new double[][]{
+                { 1,  0,  0,  0 },
+                { 0,  c, -s,  0 },
+                { 0,  s,  c,  0 },
+                { 0,  0,  0,  1 }
+        });
     }
 
     public static RealMatrix rotY(double theta) { // returns a homogenous rotation matrix around the Y axis
-        return null; // TODO
+        double c = Math.cos(theta);
+        double s = Math.sin(theta);
+        return new Array2DRowRealMatrix(new double[][]{
+                {  c,  0,  s,  0 },
+                {  0,  1,  0,  0 },
+                { -s,  0,  c,  0 },
+                {  0,  0,  0,  1 }
+        });
     }
 
     public static RealMatrix rotZ(double theta) { // returns a homogenous rotation matrix around the Z axis
-        return null; // TODO
+        double c = Math.cos(theta);
+        double s = Math.sin(theta);
+        return new Array2DRowRealMatrix(new double[][]{
+                {  c, -s,  0,  0 },
+                {  s,  c,  0,  0 },
+                {  0,  0,  1,  0 },
+                {  0,  0,  0,  1 }
+        });
     }
 
     // a 4 translation vector. assume w/normalized.
     public static RealMatrix trans(RealVector t) {return trans(t.getEntry(0), t.getEntry(1), t.getEntry(2));  }
     public static RealMatrix trans(double tx, double ty, double tz) { // returns a homogenous translation matrix
-        return null; // TODO
+        return new Array2DRowRealMatrix(new double[][]{
+                { 1,  0,  0,  tx },
+                { 0,  1,  0,  ty },
+                { 0,  0,  1,  tz },
+                { 0,  0,  0,   1 }
+        });
     }
 
     public static RealMatrix T(RealMatrix R, double tx, double ty, double tz) { // constructs a Rt matrix
-        return null; // TODO
+        return trans(tx, ty, tz).multiply(R);
     }
 
 

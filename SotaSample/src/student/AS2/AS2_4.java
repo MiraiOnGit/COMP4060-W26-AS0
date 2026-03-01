@@ -1,10 +1,15 @@
-package student.AS2Distribute;
+package student.AS2;
 
-import student.AS2Distribute.Frames.FrameKeys;
+import jp.vstone.RobotLib.CRobotMem;
+import jp.vstone.RobotLib.CRobotPose;
+import jp.vstone.RobotLib.CRobotUtil;
+import jp.vstone.RobotLib.CSotaMotion;
+import org.apache.commons.math3.linear.RealMatrix;
+import student.AS2.Frames.FrameKeys;
 import jp.vstone.RobotLib.*;
 
 public class AS2_4 {
-	static final String TAG = "AS3_4";   // set this to support the Sota logging system
+	static final String TAG = "AS2_4";   // set this to support the Sota logging system
 
 	// private variables
 	CRobotPose _sotaPose = new CRobotPose();

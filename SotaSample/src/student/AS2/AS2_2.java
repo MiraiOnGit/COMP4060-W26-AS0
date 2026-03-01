@@ -15,18 +15,6 @@ public class AS2_2 {
 
         CRobotMem mem = new CRobotMem();
         CSotaMotion motion = new CSotaMotion(mem);
-
-        Byte[] ids = new Byte[]{
-                CSotaMotion.SV_BODY_Y,
-                CSotaMotion.SV_L_SHOULDER,
-                CSotaMotion.SV_L_ELBOW,
-                CSotaMotion.SV_R_SHOULDER,
-                CSotaMotion.SV_R_ELBOW,
-                CSotaMotion.SV_HEAD_Y,
-                CSotaMotion.SV_HEAD_P,
-                CSotaMotion.SV_HEAD_R
-        };
-
         if(mem.Connect()){
             motion.InitRobot_Sota();
             CRobotUtil.Log(TAG, "Rev. " + mem.FirmwareRev.get());
@@ -35,8 +23,8 @@ public class AS2_2 {
             CRobotUtil.Log(TAG, "Ranges loaded from " + ServoRangeTool.FILENAME);
 
             // Print the loaded ranges so we can verify they look correct
-//            rangeTool.printMotorRanges();
-//            CRobotUtil.wait(2000);  // pause so user can read the ranges
+            rangeTool.printMotorRanges();
+            CRobotUtil.wait(2000);  // pause so user can read the ranges
 
             CRobotPose minPose = rangeTool.getMinPose();
             CRobotPose midPose = rangeTool.getMidPose();
@@ -57,7 +45,7 @@ public class AS2_2 {
             motion.waitEndinterpAll();   // also async public boolean isEndInterpAll()
             CRobotUtil.wait(500);   //pause the program / current thread
 
-            for (Byte id : ids) {
+            for (Byte id : ServoRangeTool.SERVO_IDS) {
                 CRobotUtil.Log(TAG, "Testing joint ID: " + id);
                 CRobotPose currentPose = rangeTool.getMidPose();
 

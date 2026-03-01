@@ -98,6 +98,16 @@
                 </antcall>
 
                 <antcall target="__make_jar">
+                        <param name="jar.class" value="student.AS2.AS2_4" />
+                        <param name="jar.name" value="student-AS2_4.jar" />
+                </antcall>
+
+                <antcall target="__make_jar">
+                        <param name="jar.class" value="student.AS2.AS2_5" />
+                        <param name="jar.name" value="student-AS2_5.jar" />
+                </antcall>
+
+                <antcall target="__make_jar">
                         <param name="jar.class" value="sample4060.MotorStatesLive" />
                         <param name="jar.name" value="sample4060-motorstateslive.jar" />
                 </antcall>

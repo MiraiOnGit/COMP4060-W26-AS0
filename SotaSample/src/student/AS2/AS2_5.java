@@ -1,15 +1,19 @@
-package student.AS2Distribute;
-import java.util.Arrays;
+package student.AS2;
 
+import jp.vstone.RobotLib.CRobotMem;
+import jp.vstone.RobotLib.CRobotPose;
+import jp.vstone.RobotLib.CRobotUtil;
+import jp.vstone.RobotLib.CSotaMotion;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealVector;
+import student.AS2.Frames.FrameKeys;
+import student.AS2.ServoRangeTool;
+import student.AS2.SotaInverseK.JType;
 
-import student.AS2Distribute.Frames.FrameKeys;
-import student.AS2Distribute.SotaInverseK.JType;
-import jp.vstone.RobotLib.*;
+import java.util.Arrays;
 
 public class AS2_5 {
-	static final String TAG = "AS3_5";   // set this to support the Sota logging system
+	static final String TAG = "AS2_5";   // set this to support the Sota logging system
 
 	final boolean DEBUG_PRINT = false; // turn on to get debug output
 	enum TestMode {
@@ -29,14 +33,14 @@ public class AS2_5 {
 		CRobotUtil.Log(TAG, "Start " + TAG);
 	}
 
-	boolean connect() {		
+	boolean connect() {
 		if(!_sotaMem.Connect()) { // connect to the robot's subsystem
 			CRobotUtil.Log(TAG, "Sota connection failure " + TAG);
 			return false;
 		}
 
 		CRobotUtil.Log(TAG, "connected " + TAG);
-		_sotaMotion.InitRobot_Sota();  // initialize the Sota VSMD			
+		_sotaMotion.InitRobot_Sota();  // initialize the Sota VSMD
 		CRobotUtil.Log(TAG, "Rev. " + _sotaMem.FirmwareRev.get());
 		return true;
 	}
@@ -46,7 +50,7 @@ public class AS2_5 {
 		double RADIUS = 0; // m
 		double ROTATION_SPEED = 0;  // rad / tick
 		double l_angle = 0;
-		double r_angle = 0; 
+		double r_angle = 0;
 		double h_angle = 0; // head angle.
 		double h_speed = 0.05;
 
@@ -71,13 +75,13 @@ public class AS2_5 {
 				ROTATION_SPEED = 0.3; // radians each time.
 				break;
 		}
-		
+
 		ServoRangeTool ranges = ServoRangeTool.Load();
 		CRobotUtil.Log(TAG, "Servo Ranges Loaded");
-		
+
 		_sotaMotion.ServoOn();
 		CRobotUtil.Log(TAG, "Servos On"); // initialize in on state
-		
+
 		Short[] startPose = new Short[]{-20, -261, -568, 261, 568, 31, -95, 26};  // a middle-stance for waxon/waxoff
 		CRobotPose pose = new CRobotPose();
 		pose.SetPose(_sotaMotion.getDefaultIDs(), startPose);
@@ -106,9 +110,9 @@ public class AS2_5 {
 			theta = SotaInverseK.solve(FrameKeys.R_HAND, JType.O, MatrixUtils.createRealVector(right), theta, MAX_IK_TRIES);
 			if (this.TEST_MODE == TestMode.EXTREME)
 				theta = SotaInverseK.solve(FrameKeys.HEAD, JType.R, MatrixUtils.createRealVector(head), theta, MAX_IK_TRIES); ;
-			
+
 			pose = ranges.calcMotorValues(theta);
-			
+
 			if (DEBUG_PRINT) {
 				MatrixHelp.printVector("post-IK angles ", theta);
 				System.out.println("motors pre move: "+Arrays.toString(_sotaMotion.getReadpos()) );
@@ -118,7 +122,7 @@ public class AS2_5 {
 			if (first) {
 				_sotaMotion.play(pose, 500); // make move to first angle smooth
 				_sotaMotion.waitEndinterpAll();
-				first = false;	
+				first = false;
 			} else
 				_sotaMotion.play(pose, 20);   /// if robot doesn't move, increase this to 30, 40, 50, etc.
 
@@ -142,7 +146,7 @@ public class AS2_5 {
 			return;
 		CRobotUtil.Log(TAG, "Startup Successful");
 		sota.run();
-			
+
 		CRobotUtil.Log(TAG, "Program End Reached");
 	}
 }

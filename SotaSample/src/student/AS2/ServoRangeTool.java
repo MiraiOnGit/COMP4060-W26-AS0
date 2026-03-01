@@ -17,6 +17,16 @@ public class ServoRangeTool implements Serializable {
     private Byte[] _servoIDs;
     private TreeMap<Byte, Byte> IDtoIndex = new TreeMap<>();
     private final TreeMap<Byte, Double[]> _motorRanges_rad = new TreeMap<>();
+    public static final Byte[] SERVO_IDS = new Byte[]{
+            CSotaMotion.SV_BODY_Y,      // index 0
+            CSotaMotion.SV_L_SHOULDER,  // index 1
+            CSotaMotion.SV_L_ELBOW,     // index 2
+            CSotaMotion.SV_R_SHOULDER,  // index 3
+            CSotaMotion.SV_R_ELBOW,     // index 4
+            CSotaMotion.SV_HEAD_Y,      // index 5
+            CSotaMotion.SV_HEAD_P,      // index 6
+            CSotaMotion.SV_HEAD_R       // index 7
+    };
 
     final static String FILENAME = "range.dat";
 
@@ -27,12 +37,10 @@ public class ServoRangeTool implements Serializable {
             IDtoIndex.put(servoIDs[i], (byte) i);
         }
         _motorRanges_rad.put(CSotaMotion.SV_BODY_Y,     new Double[]{ -1.077363736,  1.077363736 });
-        _motorRanges_rad.put(CSotaMotion.SV_L_SHOULDER, new Double[]{ -2.617993878,  1.745329252 });
+        _motorRanges_rad.put(CSotaMotion.SV_L_SHOULDER, new Double[]{ 1.745329252,  -2.617993878 });
         _motorRanges_rad.put(CSotaMotion.SV_L_ELBOW,    new Double[]{ -1.745329252,  1.221730476 });
-//        _motorRanges_rad.put(CSotaMotion.SV_R_SHOULDER, new Double[]{ -1.745329252,  2.617993878 });
-//        _motorRanges_rad.put(CSotaMotion.SV_R_ELBOW,    new Double[]{ -1.221730476,  1.745329252 });
-        _motorRanges_rad.put(CSotaMotion.SV_R_SHOULDER, new Double[]{  2.617993878, -1.745329252 });
-        _motorRanges_rad.put(CSotaMotion.SV_R_ELBOW,    new Double[]{  1.745329252, -1.221730476 });
+        _motorRanges_rad.put(CSotaMotion.SV_R_SHOULDER, new Double[]{ -1.745329252,  2.617993878 });
+        _motorRanges_rad.put(CSotaMotion.SV_R_ELBOW,    new Double[]{ -1.221730476,  1.745329252 });
         _motorRanges_rad.put(CSotaMotion.SV_HEAD_Y,     new Double[]{ -1.495996502,  1.495996502 });
         _motorRanges_rad.put(CSotaMotion.SV_HEAD_P,     new Double[]{ -2.617993878,  2.617993878 });
         _motorRanges_rad.put(CSotaMotion.SV_HEAD_R,     new Double[]{ -1.495996502,  1.495996502 });
@@ -105,8 +113,6 @@ public class ServoRangeTool implements Serializable {
         double min   = _minpos[i];
         double max   = _maxpos[i];
         return lower + (pos - min) * (upper - lower) / (max - min);
-
-
     }
 
     private short radToPos(Byte servoID, double angle) { // convert angles, in radians, to motor position
