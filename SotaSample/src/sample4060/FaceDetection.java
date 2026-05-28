@@ -43,7 +43,7 @@ public class FaceDetection {
 	}
 
 	public static void FaceProcessingDemo(CSotaMotion motion, CRoboCamera cam) {
-		CRobotUtil.Log(TAG, "----- Starting "+PROCESSING_TIME_s+"s face info extraction withuot tracking");
+		CRobotUtil.Log(TAG, "----- Starting "+PROCESSING_TIME_s+"s face info extraction without tracking");
 
 		cam.StartFaceDetect();
 		Instant startTime = Instant.now();

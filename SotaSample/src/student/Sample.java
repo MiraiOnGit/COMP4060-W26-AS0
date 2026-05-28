@@ -37,30 +37,6 @@ public class Sample {
 
 			// example of how to set poses in bulk. Store the pose information into the pose object.
 			pose = new CRobotPose();
-//			pose.SetPose(new Byte[] {
-//							1, //body yaw
-//							2, //left shoulder
-//							3, //left elbow
-//							4, //right shoulder
-//							5, //right elbow
-//							6, //head yaw
-//							7, //head pitch
-//							8 //head roll
-//			}	//id
-//			,  new Short[]{0   , 0 , 0   , 0 ,0   ,0   ,0   ,0}				//target pos
-//			);
-
-			// illuminate LEDS:  left eye, right eye, mouth, power button
-			// all are RGB (use Java.colors) except mouth which is 8 bit brightness
-			pose.setLED_Sota(Color.MAGENTA, Color.MAGENTA, 255, Color.RED);
-
-			// apply the pose, do motion over 1000msec, linear interpolation
-//			motion.play(pose,1000);
-
-			// wait until motion has finished
-//			motion.waitEndinterpAll();   // also async public boolean isEndInterpAll()
-//			CRobotUtil.wait(500);   //pause the program / current thread
-
 			pose.SetPose(new Byte[] {
 							1, //body yaw
 							2, //left shoulder
@@ -80,7 +56,7 @@ public class Sample {
 			motion.waitEndinterpAll();   // also async public boolean isEndInterpAll()
 			CRobotUtil.wait(500);   //pause the program / current thread
 
-//			motion.ServoOff();
+			motion.ServoOff();
 //			pose = new CRobotPose();
 			pose.setLED_Sota(Color.MAGENTA, Color.MAGENTA, 255, Color.GREEN);
 			motion.play(pose,500);
@@ -88,23 +64,6 @@ public class Sample {
 			CPlayWave.PlayWave(SOUNDS+"ina-tomorrow.wav");
 			CRobotUtil.wait(2000);
 
-			pose.SetPose(new Byte[] {
-							1, //body yaw
-							2, //left shoulder
-							3, //left elbow
-							4, //right shoulder
-							5, //right elbow
-							6, //head yaw
-							7, //head pitch
-							8 //head roll
-					}	//id
-					,  new Short[]{0   , 0 , 0   , 0 ,0   ,0   ,0   ,0}				//target pos
-			);
-			// wait until motion has finished
-			motion.waitEndinterpAll();   // also async public boolean isEndInterpAll()
-			CRobotUtil.wait(500);   //pause the program / current thread
-
-			motion.ServoOff();
 		}
 	}
 }

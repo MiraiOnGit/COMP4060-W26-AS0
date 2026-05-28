@@ -1,5 +1,6 @@
 package sample4060;
 import jp.vstone.RobotLib.*;
+import student.AS2.ServoRangeTool;
 
 ///// BIG HINT to help you speed up debugging.
 /// -- use the code in this example to learn how to print live results in a clean way to the console

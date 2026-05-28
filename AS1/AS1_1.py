@@ -13,12 +13,6 @@ R_MAX_SPEED = 1000 #step/s
 
 
 def move_steps(epuckcomm, l_speed_steps_s, r_speed_steps_s, l_target_steps, r_target_steps,Hz=10): 
-    # Sets the robot’s left and right wheel speed as given (in steps/s)
-    # starts a control loop 
-        # monitors the robot odometry readings to see how far (in motor steps) the robot has gone
-        # if both the left and right targets (l_target_steps, r_target_steps) were met
-            # stop 
-    # return (left_steps_moved, right_steps_moved)  
 
     epuckcomm.data_update()
     prev_left = epuckcomm.state.sens_left_motor_steps

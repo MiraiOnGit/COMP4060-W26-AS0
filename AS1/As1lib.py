@@ -106,32 +106,32 @@ if __name__ == "__main__":
     delta = steps_delta(-1000, 16999)
     print(f"steps_delta(1000, 32000) = {delta}")
 
-    # delta = steps_delta(65500, 100)
-    # print(f"steps_delta(65500, 100) = {delta}")
+    delta = steps_delta(65500, 100)
+    print(f"steps_delta(65500, 100) = {delta}")
 
-    # delta = steps_delta(100, 65500)
-    # print(f"steps_delta(100, 65500) = {delta}")
+    delta = steps_delta(100, 65500)
+    print(f"steps_delta(100, 65500) = {delta}")
 
     # steps_to_rad
-    # rad = steps_to_rad(1000)
-    # print(f"steps_to_rad(1000) = {rad:.6f} rad")
+    rad = steps_to_rad(1000)
+    print(f"steps_to_rad(1000) = {rad:.6f} rad")
 
     # # rad_to_steps
-    # steps = rad_to_steps(2 * math.pi)
-    # print(f"rad_to_steps(2pi) = {steps:.2f} steps")
+    steps = rad_to_steps(2 * math.pi)
+    print(f"rad_to_steps(2pi) = {steps:.2f} steps")
 
     # # rad_to_mm
-    # circumference = math.pi * WHEEL_DIAMETER_MM
-    # distance = rad_to_mm(2 * math.pi)
-    # print(f"rad_to_mm(2pi) = {distance:.4f} mm")
+    circumference = math.pi * WHEEL_DIAMETER_MM
+    distance = rad_to_mm(2 * math.pi)
+    print(f"rad_to_mm(2pi) = {distance:.4f} mm")
 
     # # mm_to_rad
-    # rad = mm_to_rad(circumference)
-    # print(f"mm_to_rad({circumference:.4f}) = {rad:.6f} rad")
+    rad = mm_to_rad(circumference)
+    print(f"mm_to_rad({circumference:.4f}) = {rad:.6f} rad")
     
     # # steps_to_mm
-    # distance = steps_to_mm(1000)
-    # print(f"steps_to_mm(1000) = {distance:.4f} mm")
+    distance = steps_to_mm(1000)
+    print(f"steps_to_mm(1000) = {distance:.4f} mm")
 
     steps = mm_to_steps(1000)
     # halfsteps = mm_to_steps(500)

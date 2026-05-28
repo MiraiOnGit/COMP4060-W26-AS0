@@ -1,3 +1,18 @@
 stop /1e-10/
-dance /1e-10/
-its a trap /1e-65/
+enough /1e-10/
+
+again /1e-10/
+another /1e-10/
+more /1e-10/
+goodbye /1e-10/
+smart /1e-10/
+dad /1e-10/
+yes /1e-10/
+ok /1e-10/
+stay /1e-10/
+
+like /1e-10/
+
+
+
+
