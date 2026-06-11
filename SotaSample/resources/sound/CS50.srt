@@ -1,0 +1,119 @@
+1
+00:00:00,289 --> 00:00:01,120
+Hello world,
+
+2
+00:00:01,250 --> 00:00:02,240
+my name is David Malan,
+
+3
+00:00:02,289 --> 00:00:03,490
+and I teach CS50,
+
+4
+00:00:03,609 --> 00:00:06,909
+a free introduction to the intellectual enterprises of computer science
+
+5
+00:00:07,010 --> 00:00:08,229
+and the art of programming
+
+6
+00:00:08,409 --> 00:00:10,390
+with and without artificial intelligence,
+
+7
+00:00:10,569 --> 00:00:13,350
+freely available at cs50.edx.org.
+
+8
+00:00:13,630 --> 00:00:16,610
+Each year we host an event at Harvard University called CS50
+
+9
+00:00:16,610 --> 00:00:19,649
+Puzzle Day during which students tackle a packet of puzzles,
+
+10
+00:00:19,750 --> 00:00:21,170
+logic problems of sorts,
+
+11
+00:00:21,299 --> 00:00:22,979
+for fun and fabulous prizes.
+
+12
+00:00:23,139 --> 00:00:26,409
+And each year we also hold an event called CS50x Puzzle Day,
+
+13
+00:00:26,540 --> 00:00:29,420
+which is an online adaptation of the same open to
+
+14
+00:00:29,420 --> 00:00:32,319
+everyone around the world whether taking CS50 or not.
+
+15
+00:00:32,619 --> 00:00:35,729
+No prior computer science or programming experience is required.
+
+16
+00:00:35,939 --> 00:00:38,380
+You're encouraged to form a team of size 2, 3,
+
+17
+00:00:38,389 --> 00:00:38,970
+or 4,
+
+18
+00:00:39,259 --> 00:00:40,720
+or you can participate on your own,
+
+19
+00:00:41,020 --> 00:00:42,459
+and teachers are welcome to host their
+
+20
+00:00:42,590 --> 00:00:43,970
+own version during class.
+
+21
+00:00:44,229 --> 00:00:45,650
+Now if you need help forming a team,
+
+22
+00:00:45,750 --> 00:00:47,029
+no matter where you are in the world,
+
+23
+00:00:47,189 --> 00:00:49,939
+reach out to others via any of CS50's communities.
+
+24
+00:00:50,150 --> 00:00:53,459
+You're welcome to collaborate on the puzzles when the time comes via WhatsApp,
+
+25
+00:00:53,599 --> 00:00:53,990
+Zoom,
+
+26
+00:00:53,990 --> 00:00:55,330
+or any other platform.
+
+27
+00:00:55,549 --> 00:00:57,830
+To participate in CS50x puzzle day,
+
+28
+00:00:58,496 --> 00:01:01,486
+register at cs50.ly/register.
+
+29
+00:01:02,110 --> 00:01:02,650
+This
+
+30
+00:01:02,790 --> 00:01:03,750
+is CS50.
