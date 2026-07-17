@@ -8,7 +8,7 @@
         <!--ip -->
         <!--- CONFIGURE THIS for your Sota -->
 
-        <property name="scp.server" value="192.168.137.45"/>
+        <property name="scp.server" value="192.168.137.15"/>
 <!--         <property name="scp.server" value="10.151.63.71"/>-->
 
         <!--scp credentials -->
@@ -30,7 +30,7 @@
 
         <!--runnable classpath. Update if you need new libraries -->
         <property name="jar.classpath"
-         value=". /home/vstone/lib/commons-math3-3.6.1.jar /home/vstone/lib/sotalib.jar /home/vstone/lib/SRClientHelper.jar /home/vstone/lib/core-2.2.jar /home/vstone/lib/javase-2.2.jar  /home/vstone/lib/jna-4.1.0.jar /home/vstone/lib/gson-2.6.1.jar /usr/local/share/OpenCV/java/opencv-310.jar /home/vstone/lib/marytts-runtime-5.2-jar-with-dependencies.jar /home/vstone/lib/marytts-lang-en-5.2.jar /home/vstone/lib/voice-dfki-prudence-hsmm-5.2.jar /home/vstone/lib/voice-cmu-slt-hsmm-5.2.jar" />
+         value=". /home/vstone/lib/commons-math3-3.6.1.jar /home/vstone/lib/sotalib.jar /home/vstone/lib/SRClientHelper.jar /home/vstone/lib/core-2.2.jar /home/vstone/lib/javase-2.2.jar  /home/vstone/lib/jna-4.1.0.jar /home/vstone/lib/gson-2.6.1.jar /usr/local/share/OpenCV/java/opencv-310.jar /home/vstone/lib/marytts-runtime-5.2-jar-with-dependencies.jar /home/vstone/lib/marytts-lang-en-5.2.jar /home/vstone/lib/voice-dfki-prudence-hsmm-5.2.jar /home/vstone/lib/voice-cmu-slt-hsmm-5.2.jar /home/vstone/lib/gdx-1.9.9.jar /home/vstone/lib/gdx-ai-1.8.2.jar" />
                                    
         <path id="build.lib">   <!-- include all jars in the listed lib dir into our classpath-->
                 <fileset dir="${lib.dir}" includes="*.jar" />
@@ -145,6 +145,14 @@
                         <param name="jar.class" value="sample4060.pipersample" />
                         <param name="jar.name" value="sample4060-pipertts.jar" />
 
+                </antcall>
+                <antcall target="__make_jar">
+                        <param name="jar.class" value="sotasample.RecordMotion" />
+                        <param name="jar.name" value="sotasample-RecordMotion.jar" />
+                </antcall>
+                <antcall target="__make_jar">
+                        <param name="jar.class" value="student.AS2.Demo" />
+                        <param name="jar.name" value="AS2-Demo.jar" />
                 </antcall>
 
                 <!-- put other programs here -->
